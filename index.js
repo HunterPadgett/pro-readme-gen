@@ -15,9 +15,11 @@
 // THEN I am taken to the corresponding section of the README
 
 // TODO: Include packages needed for this application
-// console.log("ayayya")
 const fs = require('fs');
 const inquirer = require('inquirer');
+const generateMarkdown = require('./utils./generateMarkdown');
+
+
 
 // TODO: Create an array of questions for user input
 const questions = () => {
@@ -69,9 +71,17 @@ const questions = () => {
       name: 'email',
       message: 'Enter your email address:',
     },
-    
   ]);
 };
+
+//   .then((answers) => {
+//     const readMe = generateMarkdown(answers);
+
+//     fs.writeFile('README.md', readMe, (error) => 
+//       error ? console.log(error) : console.log('README created')
+//     );
+//   });
+// }
 
 // TODO: Create a function to write README file
 function writeToFile(fileName, data) {}
