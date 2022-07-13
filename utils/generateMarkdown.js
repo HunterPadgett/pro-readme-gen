@@ -3,16 +3,16 @@
 function renderLicenseBadge(license) {
   switch (license) {
     case 'MIT':
-      return 'https://img.shields.io/badge/License-MIT-yellow.svg';
+      return '![MIT]https://img.shields.io/badge/License-MIT-yellow.svg';
       
     case 'Apache':
-      return 'https://img.shields.io/badge/License-Apache_2.0-blue.svg';
+      return '![Apache]https://img.shields.io/badge/License-Apache_2.0-blue.svg';
      
     case 'GPL':
-      return 'https://img.shields.io/badge/License-GPLv3-blue.svg';
+      return '![GPL]https://img.shields.io/badge/License-GPLv3-blue.svg';
       
     case 'BSD':
-      return 'https://img.shields.io/badge/License-BSD_3--Clause-blue.svg';
+      return '![BSD]https://img.shields.io/badge/License-BSD_3--Clause-blue.svg';
 
     default: 
       return '';
@@ -47,20 +47,20 @@ function renderLicenseSection(license) {
     case 'MIT':
       return `## License
       
-      This project is licensed under MIT.`;
+This project is licensed under MIT.`;
       
     case 'Apache':
       return `## License
       
-      This project is licensed under Apache.`;
+This project is licensed under Apache.`;
     case 'GPL':
       return `## License
       
-      This project is licensed under GPL.`;
+This project is licensed under GPL.`;
     case 'BSD':
       return `## License
       
-      This project is licensed under BSD.`;
+This project is licensed under BSD.`;
     default:
       return '';
   }
@@ -70,7 +70,7 @@ function renderLicenseSection(license) {
 function generateMarkdown(data) {
   return `
   # ${data.title}
-    ${renderLicenseBadge}
+    ${renderLicenseBadge(data.license)}
 
   ## Description
   
@@ -79,26 +79,33 @@ function generateMarkdown(data) {
   - [Installation](#installation)
   - [Usage](#usage)
   - [License](#license)
-  - [How to Contribute](#how to contribute)
+  - [How to Contribute](#how_to_contribute)
   - [Tests](#tests)
   - [Questions](#questions)
   
   ## Installation
 
+  To install run \`\`\`${data.installation}\`\`\` in the command line
+
   ## Usage
 
-  ## License
+  ${data.usage}
 
   ## How to Contribute
 
+  ${data.contributing}
+
   ## Tests
 
+  To run a test enter run \`\`\`${data.tests}\`\`\` in the command line
+
   ## Questions
+
+  If you have any questions you can reach me at ${data.email}. Feel free to check out my other projects at [${data.github}](https://www.github.com/${data.github}.com).
+
+  ${renderLicenseSection(data.license)}
+  ${renderLicenseLink(data.license)}
 `;
 }
 
-
-
 module.exports = generateMarkdown;
-
-console.log

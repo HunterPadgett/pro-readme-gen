@@ -17,78 +17,75 @@
 // TODO: Include packages needed for this application
 const fs = require('fs');
 const inquirer = require('inquirer');
-const generateMarkdown = require('./utils./generateMarkdown');
+const generateMarkdown = require('./utils/generateMarkdown');
 
 
 
 // TODO: Create an array of questions for user input
-const questions = () => {
-  return inquirer.prompt([
-    {
-      type: 'input',
-      name: 'title',
-      message: 'What is the title of your project?',
-    },
-    {
-      type: 'input',
-      name: 'description',
-      message: 'Give a description of your project:',
-    },
-    {
-      type: 'input',
-      name: 'installation',
-      message: 'What are the installation instructions for your project?',
-    },
-    {
-      type: 'input',
-      name: 'usage',
-      message: 'What is the usage information of your project?',
-    },
-    {
-      type: 'input',
-      name: 'contributing',
-      message: 'What are the contribution guidelines of your project?',
-    },
-    {
-      type: 'input',
-      name: 'tests',
-      message: 'What are the test instructions of your project?',
-    },
-    {
-      type: 'list',
-      name: 'license',
-      message: 'choose a license for your application:',
-      choices: ['MIT', 'Apache', 'GPL', 'BSD'],
-      default: 'MIT'
-    },
-    {
-      type: 'input',
-      name: 'github',
-      message: 'Enter your GitHub Username:',
-    },
-    {
-      type: 'input',
-      name: 'email',
-      message: 'Enter your email address:',
-    },
-  ]);
-};
-
-//   .then((answers) => {
-//     const readMe = generateMarkdown(answers);
-
-//     fs.writeFile('README.md', readMe, (error) => 
-//       error ? console.log(error) : console.log('README created')
-//     );
-//   });
-// }
+const questions = [
+  {
+    type: 'input',
+    name: 'title',
+    message: 'What is the title of your project?',
+  },
+  {
+    type: 'input',
+    name: 'description',
+    message: 'Give a description of your project:',
+  },
+  {
+    type: 'input',
+    name: 'installation',
+    message: 'What are the installation instructions for your project?',
+    default: 'npm install'
+  },
+  {
+    type: 'input',
+    name: 'usage',
+    message: 'What is the usage information of your project?',
+  },
+  {
+    type: 'input',
+    name: 'contributing',
+    message: 'What are the contribution guidelines of your project?',
+  },
+  {
+    type: 'input',
+    name: 'tests',
+    message: 'What are the test instructions of your project?',
+    default: 'npm test'
+  },
+  {
+    type: 'list',
+    name: 'license',
+    message: 'choose a license for your application:',
+    choices: ['MIT', 'Apache', 'GPL', 'BSD'],
+    default: 'MIT'
+  },
+  {
+    type: 'input',
+    name: 'github',
+    message: 'Enter your GitHub Username:',
+  },
+  {
+    type: 'input',
+    name: 'email',
+    message: 'Enter your email address:',
+  },
+];
 
 // TODO: Create a function to write README file
-function writeToFile(fileName, data) {}
+// function writeToFile(fileName, data) {
 
 // TODO: Create a function to initialize app
-function init() {}
+function init() {
+  inquirer.prompt(questions).then((answers) => {
+    // console.log('generating readme')
+    fs.writeFile('README.md', generateMarkdown(answers),
+      (error) => error ? console.log(error) : console.log('README created')
+    );
+  });
+}
 
 // Function call to initialize app
 init();
-questions();
