@@ -43,6 +43,7 @@ const questions = [
     type: 'input',
     name: 'usage',
     message: 'What is the usage information of your project?',
+    default: 'node index.js'
   },
   {
     type: 'input',
